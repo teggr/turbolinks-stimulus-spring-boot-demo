@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<nav th:fragment="nav" class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}">
+                <i class="fas fa-pen-alt fa-2x has-text-primary" width="112" height="28"></i>
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" th:href="@{/}">
+                    Home
+                </a>
+            </div>
+
+            <div class="navbar-end" th:unless="${basket == null || basket.empty}">
+                <div class="navbar-item">
+
+                    <strong>You have [[${basket.itemCount}]] items costing &pound; [[${basket.amount}]]</strong>
+
+                </div>
+                <div class="navbar-item">
+                    <div class="buttons">
+
+                        <form th:action="@{/checkout}" method="post">
+                            <button class="button is-primary">
+                                <strong>Checkout items</strong>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+</body>
+</html>

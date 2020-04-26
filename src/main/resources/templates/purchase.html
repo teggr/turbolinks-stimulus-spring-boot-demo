@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head" />
+<body>
+
+<th:block th:replace="fragments/menu :: nav" />
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">
+            Pen Store
+        </h1>
+        <p class="subtitle">
+            You've decided to buy the following items
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Items</h2>
+        <table th:if="${purchase != null}" class="table is-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${purchase.items}">
+                    <td ><i class="fas fa-pen-alt fa-2x" th:classAppend="${item.style}"></i></td>
+                    <td th:text="${item.name}"/>
+                    <td th:text="'Price: &pound;' + ${item.price}"/>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="box">
+
+            <h2>Purchase Items</h2>
+            <form th:action="@{purchase}" method="post">
+                <th:block th:if="${purchase != null}">
+
+                    <p>Total items: [[${purchase.itemCount}]]</p>
+                    <p>Total amount: [[${purchase.amount}]]</p>
+                    <button type="submit" class="button is-primary" name="complete">Complete</button>
+                </th:block>
+
+                <button type="submit" class="button" name="cancel">Start again</button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

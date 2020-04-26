@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head" />
+<body>
+
+<th:block th:replace="fragments/menu :: nav"/>
+
+<div class="notification is-primary" th:if="${message}">
+    <button class="delete"></button>
+    [[${message}]]
+</div>
+
+<section>
+    <div class="container">
+        <h1 class="title">
+            Pen Store
+        </h1>
+        <p class="subtitle">
+            Buy some great coloured pens
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="tile is-ancestor">
+            <!-- All other tile elements -->
+
+
+            <div class="tile is-parent is-vertical">
+                <th:block th:each="item : ${items.subList(0,2)}">
+                    <div class="tile is-child box">
+                        <article class="media">
+                            <div class="media-left">
+                                <i class="fas fa-pen-alt fa-3x" th:classAppend="${item.style}"></i>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong th:text="${item.name} + ' &pound;' + ${item.price}"/>
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <form th:action="@{/basket}" method="post">
+                                            <input type="hidden" name="style" th:value="${item.style}"/>
+                                            <input type="hidden" name="price" th:value="${item.price}"/>
+                                            <input type="hidden" name="name" th:value="${item.name}"/>
+                                            <button type="submit" class="button level-item">Add to basket</button>
+                                        </form>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </th:block>
+            </div>
+
+            <div class="tile is-parent is-vertical">
+                <th:block th:each="item : ${items.subList(2,4)}">
+                    <div class="tile is-child box">
+                        <article class="media">
+                            <div class="media-left">
+                                <i class="fas fa-pen-alt fa-3x" th:classAppend="${item.style}"></i>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong th:text="${item.name} + ' &pound;' + ${item.price}"/>
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <form th:action="@{/basket}" method="post">
+                                            <input type="hidden" name="style" th:value="${item.style}"/>
+                                            <input type="hidden" name="price" th:value="${item.price}"/>
+                                            <input type="hidden" name="name" th:value="${item.name}"/>
+                                            <button type="submit" class="button level-item">Add to basket</button>
+                                        </form>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </th:block>
+            </div>
+
+            <div class="tile is-parent is-vertical">
+                <th:block th:each="item : ${items.subList(4,6)}">
+                    <div class="tile is-child box">
+                        <article class="media">
+                            <div class="media-left">
+                                <i class="fas fa-pen-alt fa-3x" th:classAppend="${item.style}"></i>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong th:text="${item.name} + ' &pound;' + ${item.price}"/>
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <form th:action="@{/basket}" method="post">
+                                            <input type="hidden" name="style" th:value="${item.style}"/>
+                                            <input type="hidden" name="price" th:value="${item.price}"/>
+                                            <input type="hidden" name="name" th:value="${item.name}"/>
+                                            <button type="submit" class="button level-item">Add to basket</button>
+                                        </form>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </th:block>
+            </div>
+
+
+        </div>
+
+        </div>
+</section>
+
+</body>
+</html>
